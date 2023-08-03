@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ProjetoCinema</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProjetoCinema.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-datepicker.css" />
+    
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>*@
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
+            
+            <div class="container-fluid">
+                <form asp-area="" asp-controller="Home" asp-action="Index">
+                    <button type="submit" style="width:auto" class="nav-link btn btn-link py-0">
+                        <img src="~/imagens/Cinema.png" />
+                    </button>
+                </form>
+                
+
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cinemax</a>*@
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">Ola</span>
+                </button>
+                
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    @await Html.PartialAsync("_LoginPartial")
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @* <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a>*@
+                        <form asp-area="Admin" asp-controller="Admin" asp-action="Index">
+                            <button type="submit" style="width:auto" class="nav-link btn btn-link py-0">
+                                <img src="~/imagens/admin.png" />
+                            </button>
+                        </form>
+                        
+                    }
+                    else
+                    {
+                        @if (User.IsInRole("Member"))
+                        {
+                            <form asp-area="Member" asp-controller="Member" asp-action="Index">
+                                <button type="submit" style="width:auto" class="nav-link btn btn-link py-0">
+                                    @*<input type="hidden" name="Id" value="">*@
+                                    <img src="~/imagens/usuario.png" />
+                                </button>
+                            </form>
+                        }
+                        @*<a class="nav-link text-dark" asp-area="Member" asp-controller="Member" asp-action="Index">Usuario</a>*@
+                    }
+
+                    @await Component.InvokeAsync("CarrinhoCompraResumo")
+
+                    @await Component.InvokeAsync("CategoriaMenu")
+
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a>
+                    
+                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>*@
+                        
+                    <form class="navbar-form navbar-right" asp-controller="Filme" asp-action="Search" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placholder="Procura Filme" name="searchString" value="@ViewData["searchString"]" />
+                        </div>
+                    </form>
+
+                    
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - ProjetoCinema - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/lib/bootstrap/dist/bootstrap-datepicker.pt-BR.min.js"></script>
+    
+        
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

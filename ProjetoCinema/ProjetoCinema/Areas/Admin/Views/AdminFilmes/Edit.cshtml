@@ -1,0 +1,116 @@
+﻿@model ProjetoCinema.Models.Filmes
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar dados de Filmes</h1>
+
+<h4>Filmes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+                @Html.ValidationMessageFor(x => x.Nome, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Sinopse" class="control-label"></label>
+                <input asp-for="Sinopse" class="form-control" />
+                <span asp-validation-for="Sinopse" class="text-danger"></span>
+                @Html.ValidationMessageFor(x => x.Sinopse, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="ImagemUrl" class="control-label"></label>
+                    <input type="file" id="foto" name="foto" class="form-control" />
+                    <span validation-for="foto" class="text-danger"></span>
+                    @Html.ValidationMessageFor(x => x.ImagemUrl, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group col-md-6">
+                    <img src="@Model.ImagemUrl" width="140" height="170"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagemThumbnailUrl" class="control-label"></label>
+                <input type="file" id="foto" name="foto" class="form-control" />
+                <span validation-for="foto" class="text-danger"></span>
+                @Html.ValidationMessageFor(x => x.ImagemThumbnailUrl, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="row">
+                <div class="form-group form-check col-sm-6">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="FilmeDestaque" /> @Html.DisplayNameFor(model => model.FilmeDestaque)
+                        @Html.ValidationMessageFor(x => x.FilmeDestaque, "", new { @class = "text-danger" })
+
+                    </label>
+                </div>
+                <div class="form-group form-check col-sm-6">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                        @Html.ValidationMessageFor(x => x.Status, "", new { @class = "text-danger" })
+
+                    </label>
+                </div>
+                <br />
+                <br />
+                <div class="form-group form-check col-sm-6">
+                    <label asp-for="DataInicial" class="control-label"></label>
+                    <input type="datetime" asp-for="DataInicial" class="form-control" />
+                    <span asp-validation-for="DataInicial" class="text-danger"></span>
+                    @Html.ValidationMessageFor(x => x.DataInicial, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group form-check col-sm-6">
+                    <label asp-for="DataFinal" class="control-label"></label>
+                    <input type="datetime" asp-for="DataFinal" class="form-control" />
+                    <span asp-validation-for="DataFinal" class="text-danger"></span>
+                    @Html.ValidationMessageFor(x => x.DataFinal, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group col-sm-12">
+                    
+                    <label asp-for="Duracao" class="control-label"></label>
+                    <input type="datetime" asp-for="Duracao" class="form-control" />
+                    <span asp-validation-for="Duracao" class="text-danger"></span>
+                    @Html.ValidationMessageFor(x => x.Duracao, "", new { @class = "text-danger" })
+
+                    
+                    <label asp-for="Categoria" class="control-label"></label>
+                  @*<select asp-for="Categoria" class="form-control" asp-items="ViewBag.CategoriaId"></select*@
+                    @Html.DropDownListFor(x => x.Categoria.Id, (SelectList)ViewData["CategoriaId"], "Selecione uma categoria")
+                    @Html.ValidationMessageFor(x => x.Categoria, "", new { @class = "text-danger" })
+
+                    
+                    <label asp-for="Salas" class="control-label"></label>
+                    @*<select asp-for="Salas" class="form-control" asp-items="ViewBag.SalasId"></select>*@
+                    @Html.DropDownListFor(x => x.Salas.Id, (SelectList)ViewData["SalasId"], "Selecione uma categoria")
+                    @Html.ValidationMessageFor(x => x.Salas, "", new { @class = "text-danger" })
+
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar a Lista</a>
+</div>
+

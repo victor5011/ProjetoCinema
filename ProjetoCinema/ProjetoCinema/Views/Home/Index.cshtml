@@ -1,0 +1,59 @@
+﻿
+<div class="row text-center">
+    <h2>Filmes</h2>
+</div>
+
+<div class="container">
+    <section id="sobre">
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/imagens/icons8-love-50.png" />
+                <h3>Feitos com amor</h3>
+                <p class="text-muted">Preparamos tudo pra te deixar confortavel</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/imagens/icons8-get-dressed-32.png" />
+                <h3>Prontos para atende-los</h3>
+                <p class="text-muted">Da melhor maneira possivel</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/imagens//icons8-desconto-48.png" />
+                <h3>Preços Camaradas </h3>
+                <p class="text-muted">Promoções imperdíveis.</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
+                <img src="~/imagens/claquete.png" />
+                <h3>Os Maios Lançamentos</h3>
+                <p class="text-muted">Você encontra os melhores aqui.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        @await Html.PartialAsync("_IndexPartial")
+    </section>
+
+    <br />
+
+    <section id="contato">
+        <div class="row">
+            <div class="col-10 col-md-5 col-lg-5 offset-1" style="color: black">
+                <h4> &copy; 2023 - Cinemax</h4>
+                <p class="text-justify">
+                    Aqui você encontra aqueles lançamentos de brilhar os olhos.
+                    Aquela pipoca saborosa e para acompanhar a sua bebida preferida.
+                </p>
+            </div>
+
+            <div class="col-10 col-md-5 col-lg-5 offset-1" style="color: black">
+                <h4>Tem alguma dúvida ?</h4>
+                <ul class="list-unstyled">
+                    <li class="py-1"> R. Alvino Gomes Teixeira, 340 - Vila Furquim, Pres. Prudente - SP, 19033-000</li>
+                    <li class="py-1"> +55 (18) 3901-4000</li>
+                    <li class="py-1"> <a href="cinemax@toledoprudente.edu.br" style="color: blue">cinemax@toledoprudente.edu.br</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</div>

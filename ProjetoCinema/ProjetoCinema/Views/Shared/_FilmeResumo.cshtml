@@ -1,0 +1,24 @@
+﻿@model Filmes
+
+<div class="col-sm-4 col-md-4 col-lg-4">
+    <h4> @Model.Nome</h4>
+    <p><img src="@Model.ImagemUrl" class="img-fluid" width="240" height="270" /></p>
+    <h4>Tempo de filme: @Model.Duracao minutos</h4>
+    <h4>Data de Exibição Inicial: @Model.DataInicial</h4>
+    <h4>Data de Encerramento @Model.DataFinal</h4>
+    <h4>Categoria do Filme: @Model.Categoria.Nome</h4>
+    
+    <h4>
+        <a asp-controller="Filme" asp-action="Details" asp-route-Id="@Model.Id">@Model.Nome</a>
+    </h4>
+    
+    <div>
+        <p class="button">
+            <@*a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-Id="@Model.Id">
+                Incluir no Carrinho
+            </a>*@
+            <a class="btn btn-primary" id="cartButton" asp-controller="Cadeira" asp-action="Index" asp-route-Id="@Model.Id">Escolher Poltrona</a>
+        </p>
+    </div>
+
+</div>

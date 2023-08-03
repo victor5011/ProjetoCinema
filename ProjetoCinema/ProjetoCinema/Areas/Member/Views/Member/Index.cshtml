@@ -1,0 +1,67 @@
+﻿@model ProjetoCinema.Models.Cliente
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Dados do Usuario</h1>
+
+
+@*<p>
+    <a asp-action="Create">Criar Novo</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Telefone)
+            </td>
+
+            <td>
+                <a asp-controller="Member" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                @* <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>

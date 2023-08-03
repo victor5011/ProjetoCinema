@@ -1,0 +1,38 @@
+﻿@model ProjetoCinema.Models.Cadeiras
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Adicionar Cadeiras</h1>
+
+<h4>Filme</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-mg-4">
+                <label class="control-label">Quantidade de Cadeiras na Sala:</label>
+                <input type="number" id="qtde_cadeiras" name="qtde_cadeiras" class="form-control" placeholder="Digite a quantidade de cadeiras que deseja pra sala. . ." />
+                @*<span validation-for="Nome" class="text-danger"></span>*@
+
+                <label class="control-label">Quantidade de Fileiras</label>
+                <input type="number" id="qtde_filheiras" name="qtde_filheiras" class="form-control" placeholder="Digite a quantidade de fileiras da sala. . ." />
+                @*<span asp-validation-for="Nome" class="text-danger"></span>*@
+
+                <label class="control-label">Nome da Sala</label>
+                <select id="salaId" name="salaId" class="form-control" asp-items="ViewBag.SalasId"></select>
+                @*<span asp-validation-for="Nome" class="text-danger"></span>*@
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar a Lista de Cadeiras</a>
+</div>

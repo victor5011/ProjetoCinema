@@ -1,0 +1,56 @@
+﻿@model FilmeSalasCadeirasViewModel
+
+@{
+    DateTime Minimo = Model.filmes.DataInicial;
+    DateTime Maximo = Model.filmes.DataFinal;
+}
+
+<h1>Selecione a Cadeira da Sala: @Model.filmes.Salas.Nome</h1>
+
+<form asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra">
+    <div class="container">
+        <div class="col-md-6">
+            <div class="form-group ">
+                <label>Cadeiras:</label>
+                <select name="cadeiraId" class="form-control" asp-items="ViewBag.Cadeira"></select>
+                @*<select id="salasid" name="salasid" class="form-control" asp-items="ViewBag.Salas"></select>*@
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group date">
+                
+                <label>Escolha uma data:</label>
+               
+                @*<input type="date" id="dataExibicao" class="form-control" data-min="@Model.filmes.DataInicial.ToString("dd-MM-yyyy")" data-max="@Model.filmes.DataFinal.ToString("dd-MM-yyyy")" />*@
+                <div class ="form-control ">
+                    <a class="datepicker-dropdown"> @Html.TextBoxFor(m=>m.dataSelecionada, new { @type = "date", @min = Minimo.ToString("yyyy-MM-dd"), @max = Maximo.ToString("yyyy-MM-dd") })</a>
+                </div>
+                
+
+                <div class="input-group-addon">
+                   <span class="glyphicon glyphicon-th"></span>
+                </div>
+                
+                @*<select id="salasid" name="salasid" class="form-control" asp-items="ViewBag.Salas"></select>*@
+            </div>
+        </div>
+        
+
+        
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Adicionar" class="btn btn-primary" />
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    $('#dataExibicao').datepicker({
+        format: 'dd/mm/yyyy',
+        language:"pt-BR",
+        starDate: @Model.filmes.DataInicial.ToString(),
+        minDate: new Date($('#dataExibicao').data('min')),
+        maxDate: new Date($('#dataExibicao').data('max'))
+    });
+    });
+</script>

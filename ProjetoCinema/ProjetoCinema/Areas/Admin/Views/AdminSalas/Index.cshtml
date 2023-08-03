@@ -1,0 +1,58 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<ProjetoCinema.Models.Salas>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Salas</h1>
+
+<form method="get" class="form-inline col-md-2">
+    <input name="filter" class="form-control" placeholder="Buscar Sala. . ." value="@Model.RouteValue["Filter"]" />
+        
+    <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Procurar
+    </button>
+</form>
+Total de Salas: @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+<p>
+    <a asp-action="Create">Criar Nova Sala</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    <form asp-action="Edit" asp-route-id="@item.Id" class="form-check-inline">
+                            <input type="image" src="/imagens/editar.png" alt="submit" style="width:auto" class="nav-link btn btn-link py-0">
+                    </form>
+
+                    <form asp-action="Details" asp-route-id="@item.Id" class="form-check-inline">
+                        <input type="image" src="/imagens/detalhes.png" alt="submit" style="width:auto" class="nav-link btn btn-link py-0">
+                    </form>
+
+                    <form asp-action="Delete" asp-route-id="@item.Id" class="form-check-inline">
+                        <input type="image" src="/imagens/excluir.png" alt="submit" style="width:auto" class="nav-link btn btn-link py-0">
+                    </form>
+                 </td>
+            </tr>
+        }
+    </tbody>
+</table>

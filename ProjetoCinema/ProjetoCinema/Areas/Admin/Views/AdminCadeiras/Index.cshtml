@@ -1,0 +1,75 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<ProjetoCinema.Models.Cadeiras>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Cadeiras</h1>
+
+<form method="get" class="form-inline col-md-2">
+    <input name="filter" class="form-control" placeholder="Buscar Cadeiras. . ." value="@Model.RouteValue["Filter"]" />
+
+    <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Procurar
+    </button>
+</form>
+Total de Salas: @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+<p>
+    <a asp-action="Create">Criar Nova Cadeira</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Salas.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salas.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @if (item.Status == true)
+                    {
+                        <dd class="col-sm-10">
+                            Vazio
+                        </dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-10">
+                            Ocupado
+                        </dd>
+                    }
+                </td>
+                <td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

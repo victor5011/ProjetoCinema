@@ -1,0 +1,42 @@
+﻿@model ProjetoCinema.Models.Pedido
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarrinhoCompra.CarrinhoCompraID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarrinhoCompra.CarrinhoCompraID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PedidoTotal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PedidoTotal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalItensPedido)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalItensPedido)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PedidoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

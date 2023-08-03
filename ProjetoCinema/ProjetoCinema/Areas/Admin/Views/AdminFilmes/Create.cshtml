@@ -1,0 +1,91 @@
+﻿@model ProjetoCinema.Models.Filmes
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Adicionar Filmes</h1>
+
+<h4>Filme</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sinopse" class="control-label"></label>
+                <input asp-for="Sinopse" class="form-control" />
+                <span asp-validation-for="Sinopse" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="ImagemUrl" class="control-label"></label>
+                <input type="file" id="foto" name="foto" class="form-control" />
+                <span validation-for="foto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagemThumbnailUrl" class="control-label"></label>
+                <input type="file" id="foto" name="foto" class="form-control" />
+                <span validation-for="foto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataInicial" class="control-label"></label>
+                <input type="datetime" asp-for="DataInicial" class="form-control" />
+                <span asp-validation-for="DataInicial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataFinal" class="control-label"></label>
+                <input type="datetime" asp-for="DataFinal" class="form-control" />
+                <span asp-validation-for="DataFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duracao" class="control-label"> em Minutos</label>
+                <input type="number" asp-for="Duracao" class="form-control" />
+                <span asp-validation-for="Duracao" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="FilmeDestaque" /> @Html.DisplayNameFor(model => model.FilmeDestaque)
+                </label>
+            </div>
+            @*<div class="form-group form-check">
+                <label class="form-check-label">
+                <input class="form-check-input" asp-for="IsLanchePreferido" /> @Html.DisplayNameFor(model => model.IsLanchePreferido)
+                </label>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Categoria.Id" class="control-label"></label>
+                <select id="categoriaid" name="categoriaid" class="form-control" asp-items="ViewBag.Categoria"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Salas.Id" class="control-label"></label>
+                <select id="salasid" name="salasid" class="form-control" asp-items="ViewBag.Salas"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                @{
+                    var erro = "";
+                    erro = TempData["Erro"] as string;
+                }
+                @if (!string.IsNullOrEmpty(erro))
+                {
+                    <div class="alert alert-danger">
+                        @erro
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar a Lista de Filmes</a>
+</div>
+
